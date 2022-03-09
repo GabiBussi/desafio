@@ -1,0 +1,52 @@
+body{
+    background-color: #CDCDC1;
+    
+}
+.container{
+    min-height:600px;
+ 
+}
+
+.card-img-top{
+    height:30px;
+    
+}
+
+.col-sm-8{
+    min-height: 500px;
+   
+}
+
+.btn-danger{
+    float: right;
+    
+}
+
+.btn-success{
+    float: right;
+    
+}
+
+.imagem_cardapio {
+    height:100px;
+}
+
+.imagem_logo {
+    height:80px;
+    width:200px;
+}
+
+.card:hover{
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: #5aeb5a;
+
+}
+.card{
+    transition: 0.3s;
+}
+
+.card:active{
+    background-color: #006400;
+    transition: 0.3s;
+}

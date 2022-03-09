@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+
+  <script src="./script.js"></script>
+  <link rel="stylesheet" href="./style.css">
+  <title>Supermercado Dmais</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8">
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+              role="tab" aria-controls="home" aria-selected="true">Produto</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="historicoo" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+              role="tab" aria-controls="profile" aria-selected="false">Histórico</button>
+          </li>
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Quantidade</th>
+                  <th scope="col">Nome do Produto</th>
+                  <th scope="col">Valor do Produto</th>
+                </tr>
+              </thead>
+              <tbody id="corpo_da_tabela">
+
+              </tbody>
+            </table>
+
+
+
+          </div>
+
+
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Quantidade</th>
+                  <th scope="col">Nome do Produto</th>
+                  <th scope="col">Valor do Produto</th>
+                </tr>
+              </thead>
+              <tbody id="tabela_historico">
+
+              </tbody>
+            </table>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Subtotal</th>
+                  <th scope="col">Desconto</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Pago</th>
+                  <th scope="col">Troco</th>
+                </tr>
+              </thead>
+              <tbody id="tabela_espelho">
+
+              </tbody>
+            </table>
+
+
+          </div>
+          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+        </div>
+
+      </div>
+
+
+      <div class="col-sm-4">
+        <div class="text-center">
+          <img class="imagem_logo mb-4" src="logo-supermercado-Dmais.png">
+        </div>
+
+        <form class="pb-5">
+
+          <div class="mb-2">
+            <label for="subtotal" class="form-label">Subtotal</label>
+            <input type="text" onclick="espelho_compra()" class="form-control" id="subtotal"
+              aria-describedby="emailHelp">
+
+          </div>
+
+          <div class="mb-2">
+            <label for="desconto" class="form-label">Desconto</label>
+            <input type="text" onclick="espelho_compra()" class="form-control" id="desconto">
+          </div>
+
+          <div class="mb-2">
+            <label for="total" class="form-label">Total</label>
+            <input type="text" onclick="espelho_compra()" class="form-control" id="total">
+          </div>
+
+          <div class="mb-2">
+            <label for="pago" class="form-label">Pago</label>
+            <input type="text" onclick="espelho_compra()" class="form-control" id="pago">
+          </div>
+
+          <div class="mb-2">
+            <label for="troco" class="form-label">Troco</label>
+            <input type="text" onclick="espelho_compra()" class="form-control" id="troco">
+          </div>
+
+        </form>
+
+      </div>
+
+
+      <div class="col-sm-12">
+        <button type="button" class="btn btn-primary" onclick="abrir_modal()">Adicionar
+          Produto</button>
+        <button type="button" onclick="cancelar_compra()" class="btn btn-danger ms-2">Cancelar Compra</button>
+        <button type="button" onclick="finalizar_compra()" class="btn btn-success">Finalizar
+          Compra
+        </button>
+      </div>
+
+
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-body">
+
+
+            <div class="row" id="lista">
+
+
+
+            </div>
+            <div class="modal-footer">
+              <div class="row w-100">
+                <div class="col">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+                <div class="col text-end">
+                  <button type="button" onclick="adicionar_produto()" class="btn btn-primary">Confirmar</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="certezaModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="certezaModal"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+
+          </div>
+          <div class="modal-body">
+            Você tem certeza que quer apagar o item?
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                <div class="col text-end">
+                  <button type="button" class="btn btn-primary" onclick="confirmaApaga()">Sim</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="finalizarModal" tabindex="-1" aria-labelledby="finalizarModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="finalizarModal">Parabéns compra finalizada!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
